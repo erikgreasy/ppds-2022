@@ -21,7 +21,7 @@ Second possible usage of locks that differs from the first one by parallelism of
 
 Run the program with:
 ```
-python mutex1.py
+python mutex2.py
 ````
 
 Output of the program:
