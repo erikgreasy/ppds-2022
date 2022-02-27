@@ -23,7 +23,7 @@ class SimpleBarrier:
         self.C += 1
         if self.C == self.N:
             self.C = 0
-            self.T.signal()
+            self.T.signal(self.N)
         self.M.unlock()
         self.T.wait()
 
