@@ -10,6 +10,8 @@ from fei.ppds import Thread, Mutex, Event, print
 
 
 class SimpleBarrier:
+    """Implementation of simple barrier """
+
     def __init__(self, N):
         self.N = N
         self.C = 0
@@ -27,14 +29,11 @@ class SimpleBarrier:
 
 
 def barrier_example(barrier, thread_id):
-    """Predpokladajme, ze nas program vytvara a spusta 5 vlakien,
-    ktore vykonavaju nasledovnu funkciu, ktorej argumentom je
-    zdielany objekt jednoduchej bariery
-    """
+    """Example function used in threads to act as barrier using simple barrier class"""
     sleep(randint(1, 10) / 10)
-    print("vlakno %d pred barierou" % thread_id)
+    print("thread %d before barrier" % thread_id)
     barrier.wait()
-    print("vlakno %d po bariere" % thread_id)
+    print("thread %d after barrier" % thread_id)
 
 
 sb = SimpleBarrier(5)
