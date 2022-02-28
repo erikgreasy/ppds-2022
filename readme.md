@@ -1,4 +1,4 @@
-# Exercise 2
+# Class 2
 Second exercise is focused on barrier and tourniquets. This exercise consist of three parts, files for every part are in it's own folder:
 1. Simple barrier
 2. Reusable barrier
@@ -18,3 +18,9 @@ or
 ```
 python ./simpleBarrier/event.py
 ```
+
+
+## Fibonacci sequence
+In this part the goal is to implement fibonacci sequence with multiple threads writing to one array, each thread writing the i+2nth item of array.
+
+In the fibonacci/semaphor.py is the draft of the implementation, that is currenntly work in progress.
