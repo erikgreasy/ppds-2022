@@ -80,7 +80,7 @@ def main():
     results = []
 
     for item_produce_time in range(5):
-        for n_consumers in range(1, 5):
+        for n_consumers in range(1, 10):
             items_per_second_sum = 0
             for iteration in range(10):
                 s = Shared(10)
