@@ -1,9 +1,7 @@
-# PPDS 2022 - Erik Masný
-Repository for school subject oriented on Parallel programming and distributed systems at The Slovak University of Technology - Faculty of electrical engineering and information technology.
+# Class 3 - Producer-consumer problem
+Third classes focuses on producer-consumer problem and experimenting with the potentional variables in this problem. Branch consists of one main.py file which contains code for the experiments.
 
-## Structure
-Every exercise can be found in its own branch named after the exercise number. 
-
-
-## Guidelines
-The repository utilizes the Conventional Commits specification.
+Run the program with:
+```
+python main.py
+```
