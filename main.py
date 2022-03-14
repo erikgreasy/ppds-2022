@@ -1,3 +1,9 @@
+"""Copyright 2022 Erik Masny.
+
+Synchronization problems exercise on example of nuclear powerplant.
+"""
+
+
 from random import randint
 from time import sleep
 from fei.ppds import Mutex, Thread, Semaphore, Event, print
