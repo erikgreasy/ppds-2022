@@ -1,6 +1,6 @@
 """Copyright 2022 Erik Masny.
 
-Synchronization problems exercise on example of nuclear powerplant.
+Synchronization problems exercise on example of nuclear power plant.
 """
 
 
@@ -10,6 +10,8 @@ from fei.ppds import Mutex, Thread, Semaphore, Event, print
 
 
 class Lightswitch:
+    """Implementation of lightswitch synchronization data structure."""
+
     def __init__(self):
         self.mutex = Mutex()
         self.counter = 0
@@ -33,6 +35,7 @@ class Lightswitch:
 
 
 def init():
+    """Main program code."""
     access_data = Semaphore(1)
     turniket = Semaphore(1)
     ls_monitor = Lightswitch()
@@ -54,6 +57,7 @@ def init():
 
 
 def monitor(monitor_id, valid_data, turniket, ls_monitor, access_data):
+    """Function acting as monitor reading in power plant"""
     valid_data.wait()
 
     while True:
@@ -69,6 +73,7 @@ def monitor(monitor_id, valid_data, turniket, ls_monitor, access_data):
 
 
 def sensorPT(sensor_id, turniket, ls_sensor, valid_data, access_data):
+    """Sensor of type P and T in power plant."""
     while True:
         turniket.wait()
         turniket.signal()
@@ -84,6 +89,7 @@ def sensorPT(sensor_id, turniket, ls_sensor, valid_data, access_data):
 
 
 def sensorH(sensor_id, turniket, ls_sensor, valid_data, access_data):
+    """Sensor of type H in power plant."""
     while True:
         turniket.wait()
         turniket.signal()
