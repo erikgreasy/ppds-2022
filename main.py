@@ -17,13 +17,14 @@ class Lightswitch:
         self.mutex.unlock()
 
         return counter
-    
+
     def unlock(self, sem):
         self.mutex.lock()
         self.counter -= 1
         if self.counter == 0:
             sem.signal()
         self.mutex.unlock()
+
 
 def init():
     access_data = Semaphore(1)
@@ -33,11 +34,18 @@ def init():
     valid_data = Event()
 
     for monitor_id in range(8):
-        Thread(monitor, monitor_id, valid_data, turniket, ls_monitor, access_data)
-    
+        Thread(
+            monitor,
+            monitor_id,
+            valid_data,
+            turniket,
+            ls_monitor,
+            access_data)
+
     Thread(sensorPT, 0, turniket, ls_sensor, valid_data, access_data)
     Thread(sensorPT, 1, turniket, ls_sensor, valid_data, access_data)
     Thread(sensorH, 2, turniket, ls_sensor, valid_data, access_data)
+
 
 def monitor(monitor_id, valid_data, turniket, ls_monitor, access_data):
     valid_data.wait()
@@ -68,6 +76,7 @@ def sensorPT(sensor_id, turniket, ls_sensor, valid_data, access_data):
         valid_data.signal()
         ls_sensor.unlock(access_data)
 
+
 def sensorH(sensor_id, turniket, ls_sensor, valid_data, access_data):
     while True:
         turniket.wait()
@@ -81,6 +90,7 @@ def sensorH(sensor_id, turniket, ls_sensor, valid_data, access_data):
         sleep(writing_process)
         valid_data.signal()
         ls_sensor.unlock(access_data)
+
 
 if __name__ == '__main__':
     init()
