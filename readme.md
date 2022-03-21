@@ -1,9 +1,8 @@
-# PPDS 2022 - Erik Masný
-Repository for school subject oriented on Parallel programming and distributed systems at The Slovak University of Technology - Faculty of electrical engineering and information technology.
+# Class 5 - Dinning savages problem
+This weeks class is focused on dinning savages problem. The main goal is to modify original implementation of the problem to multi-cook variant.
 
-## Structure
-Every exercise can be found in its own branch named after the exercise number. 
-
-
-## Guidelines
-The repository utilizes the Conventional Commits specification.
+## Running the program
+Run the program with:
+```
+python main.py
+```
