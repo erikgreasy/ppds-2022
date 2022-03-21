@@ -3,7 +3,7 @@
 Dinning savages problem implementation.
 """
 
-from fei.ppds import Semaphore, Mutex, Thread, print
+from fei.ppds import Semaphore, Mutex, Thread, print, Event
 from random import randint
 from time import sleep
 
@@ -12,9 +12,11 @@ Therefore we dont put them in shared object.
 
     M - number of portions
     N - number of savages (wihtout cook)
+    C - number of cooks
 """
 M = 2
 N = 3
+C = 3
 
 
 class SimpleBarrier:
@@ -49,9 +51,10 @@ class Shared:
 
     def __init__(self):
         self.mutex = Mutex()
+        self.cook_mutex = Mutex()
         self.servings = 0
         self.full_pot = Semaphore(0)
-        self.empty_pot = Semaphore(0)
+        self.empty_pot = Event()
         self.barrier1 = SimpleBarrier(N)
         self.barrier2 = SimpleBarrier(N)
 
@@ -93,27 +96,44 @@ def savage(savage_id, shared):
         eat(savage_id)
 
 
-def put_servings_in_pot(M, shared):
+def put_servings_in_pot(cook_id, M, shared):
     """Update shared variable servings.
 
     M - num of portions cooked
     """
 
-    print("cook: cooking")
+    print(f"cook {cook_id}: putting servings to pot")
     sleep(0.4 + randint(0, 2) / 10)
-    shared.servings += M
+
+def cook_serving(cook_id, shared):
+    print(f"cook {cook_id}: cooking portion")
+    sleep(0.4 + randint(0, 2) / 10)
+    shared.servings += 1
+    print(f"cook {cook_id}: finished cooking portion")
 
 
-def cook(M, shared):
+
+def cook(cook_id, M, shared):
     """Cook implementation, cooking the servings.
 
     M - num of portions to cook
     """
 
     while True:
+       
         shared.empty_pot.wait()
-        put_servings_in_pot(M, shared)
-        shared.full_pot.signal()
+        shared.cook_mutex.lock()
+        if shared.servings == M:
+            print(f'cook {cook_id} putting servings to pot')
+            put_servings_in_pot(cook_id, M, shared)
+            # shared.cook_mutex.unlock()
+            shared.full_pot.signal()
+            shared.empty_pot.clear()
+            shared.empty_pot.wait()
+
+        cook_serving(cook_id, shared)
+        shared.cook_mutex.unlock()
+
 
 
 def init_and_run(N, M):
@@ -122,7 +142,9 @@ def init_and_run(N, M):
     shared = Shared()
     for savage_id in range(0, N):
         threads.append(Thread(savage, savage_id, shared))
-    threads.append(Thread(cook, M, shared))
+    for cook_id in range(0, C):
+        threads.append(Thread(cook, cook_id, M, shared))
+        
 
     for t in threads:
         t.join()
