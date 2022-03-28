@@ -43,6 +43,7 @@ def bond(shared):
     """Function imitating creation of H20 molecule."""
 
     print('H2O created')
+    sleep(1)
 
 
 def oxygen(shared):
