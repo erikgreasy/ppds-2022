@@ -86,7 +86,7 @@ def hydrogen(shared):
             shared.mutex.unlock()
         else:
             shared.oxygen -= 1
-            shared.hydrogen -= 1
+            shared.hydrogen -= 2
             shared.oxyQueue.signal()
             shared.hydroQueue.signal(2)
 
