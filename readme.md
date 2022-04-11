@@ -1,9 +1,10 @@
-# PPDS 2022 - Erik Masný
-Repository for school subject oriented on Parallel programming and distributed systems at The Slovak University of Technology - Faculty of electrical engineering and information technology.
+# Class 7 - coprograms
+This lesson is the first one in the section of multiple classes on topic of asynchronous programming.
+Goal is to implement an application that has multiple coprograms with the use of extended generators, whose execution 
+is handled by simple scheduler.
 
-## Structure
-Every exercise can be found in its own branch named after the exercise number. 
-
-
-## Guidelines
-The repository utilizes the Conventional Commits specification.
+## Run the program
+Run the program with 
+```
+python main.py
+```
