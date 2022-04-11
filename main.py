@@ -1,6 +1,6 @@
 """Copyright 2022 Erik Masny.
 
-Simple coprograms implementation.
+Simple coprograms implementation. Code taken from PPDS class.
 """
 
 
