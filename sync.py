@@ -1,3 +1,8 @@
+"""Copyright 2022 Erik Masny.
+
+Chuck Puller - synchronous app to pull jokes about Chuck Norris.
+"""
+
 import json
 import requests
 import time

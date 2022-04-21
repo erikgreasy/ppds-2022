@@ -1,3 +1,8 @@
+"""Copyright 2022 Erik Masny.
+
+Asynchronous version of Chuck Puller - app to pull jokes about Chuck Norris.
+"""
+
 import asyncio
 import aiohttp
 import time
