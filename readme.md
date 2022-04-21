@@ -8,7 +8,15 @@ As an example application, I created the Chuck Puller. Chuck Puller is a simple 
 
 The synchronous application is in sync.py and the asynchronous application is in async.py file. After execution, the jokes are printed to STDOUT and the final time elapsed during pulling the jokes is also printed.
 
-## Dependencies
+## Results
+### Running times / performance
+The prediction was that async version would be faster than the synchronous one. The times were pretty much the same for both programs - the async version was just a little bit faster, to compare SYNC: 3.357s and ASYNC: 2.282s. This may be due to fast responses of simple API.
+
+### Async code
+To compare the regular code to async code, from my point of view, the regular code is cleaner and more simple - mainly in this example. In simple programms like this, the async way of doing things may seem like an unneccessary overhelm. Anyway, in bigger programms, it may not be as obvious and the benefits are much higher.
+
+## Run it yourself
+### Dependencies
 The app is using python libraries, mainly the requests, and aiohttp. You may need to install these first with:
 ```
 pip install requests
@@ -17,7 +25,7 @@ pip install requests
 pip install aiohttp
 ```
 
-## Run the Chuck Puller
+### Run the Chuck Puller
 To run the synchronous version, execute:
 ```
 python sync.py
