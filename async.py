@@ -10,6 +10,8 @@ import platform
 
 
 async def get_jokerino(i):
+    """Asynchronously prints joke retrieved from API"""
+
     async with aiohttp.ClientSession() as session:
         async with session.get('https://api.chucknorris.io/jokes/random') as res:
             res = await res.json()
@@ -17,6 +19,7 @@ async def get_jokerino(i):
 
 
 async def main():
+    """Main program code"""
 
     start = time.time()
 

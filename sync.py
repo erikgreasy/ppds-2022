@@ -8,11 +8,14 @@ import time
 
 
 def get_jokerino(i):
+    """Prints joke retrieved from API"""
+
     res = requests.get('https://api.chucknorris.io/jokes/random').json()
     print(f"{i}: {res['value']}")
 
 
 def main():
+    """Main program code"""
 
     start = time.time()
 
